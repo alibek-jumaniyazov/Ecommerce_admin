@@ -11,32 +11,23 @@ export default function Login() {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-
     const { setUserData } = useContext(UserContext)
 
     const handleCLick = async (event) => {
         try {
-            const response = await axios.post('https://ecommerce.main-gate.appx.uz/dev/adminka/auth/login', event)
-            response.data.isok ?
+            const response = await axios.post('https://ecommerce.main-gate.appx.uz/dev/adminka/auth/login', { username: event.username, password: event.password })
+            if (response.data.isOk) {
                 setUserData({
-                    isAuth: false,
+                    isAuth: true,
                     tokens: {
                         access: '',
                         refresh: '',
                     },
                 })
-                :
-                setUserData({
-                    isAuth: true,
-                    tokens: {
-                        access: response.data.accessToken,
-                        refresh: response.data.refreshToken,
-                    },
-                });
-
-
+            }
             navigate('/')
             console.log(response.data);
+            console.log(event);
         }
         catch (err) {
             console.error(err);
