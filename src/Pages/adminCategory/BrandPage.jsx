@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function brandPage() {
+export default function BrandPage() {
   return (
-    <div className='brandPage'>
+    <div className='BrandPage'>
 
     </div>
   )

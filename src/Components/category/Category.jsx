@@ -9,6 +9,7 @@ import {
 import { Layout, Menu, Button, theme } from 'antd';
 import { Route, Routes } from 'react-router-dom';
 import { routes } from '../../routes/router';
+import { adminList } from '../../routes/adminList';
 const { Header, Sider, Content } = Layout;
 
 const Category = () => {
@@ -29,7 +30,7 @@ const Category = () => {
                 <Menu
                     theme="dark"
                     mode="inline"
-                    items={routes}
+                    items={adminList}
                 />
             </Sider>
             <Layout>
@@ -54,7 +55,7 @@ const Category = () => {
                     <Routes>
                         {
                             routes.map((item) => (
-                                <Route path={item.label} element={item.component} key={item.key} />
+                                <Route path={item.path} element={item.component} key={item.id} />
                             ))
                         }
                     </Routes>

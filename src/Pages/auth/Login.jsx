@@ -1,6 +1,8 @@
 import { Button, Form, Input } from 'antd';
 import axios from 'axios';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../Context/UserContext';
 
 export default function Login() {
 
@@ -10,14 +12,34 @@ export default function Login() {
         console.log('Failed:', errorInfo);
     };
 
+    const { setUserData } = useContext(UserContext)
+
     const handleCLick = async (event) => {
         try {
             const response = await axios.post('https://ecommerce.main-gate.appx.uz/dev/adminka/auth/login', event)
-            localStorage.setItem('userInfo', JSON.stringify(response.data))
+            response.data.isok ?
+                setUserData({
+                    isAuth: false,
+                    tokens: {
+                        access: '',
+                        refresh: '',
+                    },
+                })
+                :
+                setUserData({
+                    isAuth: true,
+                    tokens: {
+                        access: response.data.accessToken,
+                        refresh: response.data.refreshToken,
+                    },
+                });
+
+
             navigate('/')
+            console.log(response.data);
         }
         catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 
@@ -75,7 +97,7 @@ export default function Login() {
                         span: 16,
                     }}
                 >
-                    <Button type="primary" htmlType="submit" onClick={() => handleCLick()}>
+                    <Button type="primary" htmlType="submit">
                         Submit
                     </Button>
                 </Form.Item>

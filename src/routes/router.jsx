@@ -3,44 +3,45 @@ import ProductPage from "../Pages/adminCategory/ProductPage";
 import OrdersPage from "../Pages/adminCategory/ordersPage";
 import UsersPage from "../Pages/adminCategory/UsersPage";
 import EventsPage from "../Pages/adminCategory/EventsPage";
+import BrandPage from "../Pages/adminCategory/BrandPage";
 import Home from "../Pages/Home";
 
 
 export const routes = [
     {
-        key:1,
-        label: "home",
-        component: <Home/>
+        id: 1,
+        path: "/home",
+        component: <Home />
     },
     {
-        key:2,
-        label: "category",
-        component: <CategoryPage/>
+        id: 2,
+        path: "/category",
+        component: <CategoryPage />
     },
     {
-        key:3,
-        label: "brand",
-        component: <CategoryPage/>
+        id: 3,
+        path: "/brand",
+        component: <BrandPage />
     },
     {
-        key:4,
-        label: "product",
-        component: <ProductPage/>
+        id: 4,
+        path: "/products",
+        component: <ProductPage />
     },
     {
-        key:5,
-        label: "users",
-        component: <UsersPage/>
+        id: 5,
+        path: "/users",
+        component: <UsersPage />
     },
     {
-        key:6,
-        label: "orders",
-        component: <OrdersPage/>
+        id: 6,
+        path: "/orders",
+        component: <OrdersPage />
     },
     {
-        key:7,
-        label: "events",
-        component: <EventsPage/>
+        id: 7,
+        path: "/events",
+        component: <EventsPage />
     },
 ]
 

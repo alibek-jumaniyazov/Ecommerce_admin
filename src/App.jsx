@@ -1,15 +1,15 @@
-import { Route, Routes } from "react-router-dom"
-import { routes } from "./routes/router"
+import { useContext } from "react"
+import { UserContext } from "./Context/UserContext"
 import Dashboard from "./Pages/Dashboard"
+import CategoryPage from "./Pages/adminCategory/CategoryPage"
 import Login from "./Pages/auth/Login"
 
 function App() {
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+  const { user } = useContext(UserContext)
+
   return (
     <div className="App">
-      <Routes>
-        <Route path='/' element={userInfo ? <Dashboard /> : <Login />} />
-      </Routes>
+      {user.isAuth ? <Dashboard /> : <Login />}
     </div>
   )
 }
