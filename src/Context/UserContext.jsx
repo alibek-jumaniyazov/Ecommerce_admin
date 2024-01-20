@@ -17,18 +17,18 @@ const UserProvider = ({ children }) => {
         };
     const [user, setUser] = useState(initialState);
 
-    function setData(user) {
-        setUser(user);
-        localStorage.setItem("user", JSON.stringify(user));
-    }
+    // function setData(user) {
+      
+    // }
 
     function setUserData(user) {
-        setData(user);
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
     }
 
 
     const values = {
-        user,  setUserData
+        user, setUserData
     }
     return (
         <UserContext.Provider value={values}>
