@@ -17,7 +17,7 @@ const UserProvider = ({ children }) => {
         };
     const [user, setUser] = useState(initialState);
 
-    // function setData(user) {
+    // function setData(user) { 
       
     // }
 
