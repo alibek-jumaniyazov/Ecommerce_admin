@@ -1,18 +1,47 @@
-import Dashboard from "../Pages/Dashboard";
-import Login from "../Pages/auth/Login";
+import CategoryPage from "../Pages/adminCategory/CategoryPage";
+import ProductPage from "../Pages/adminCategory/ProductPage";
+import OrdersPage from "../Pages/adminCategory/ordersPage";
+import UsersPage from "../Pages/adminCategory/UsersPage";
+import EventsPage from "../Pages/adminCategory/EventsPage";
+import Home from "../Pages/Home";
 
-const userInfo = JSON.parse(localStorage.getItem('userInfo'))
 
 export const routes = [
     {
-        id:1,
-        path:'/',
-        component: userInfo ? <Dashboard/> :  <Login/>
+        key:1,
+        label: "home",
+        component: <Home/>
     },
     {
-        id:2,
-        path:'login',
-        component:<Login/>
+        key:2,
+        label: "category",
+        component: <CategoryPage/>
     },
-    
+    {
+        key:3,
+        label: "brand",
+        component: <CategoryPage/>
+    },
+    {
+        key:4,
+        label: "product",
+        component: <ProductPage/>
+    },
+    {
+        key:5,
+        label: "users",
+        component: <UsersPage/>
+    },
+    {
+        key:6,
+        label: "orders",
+        component: <OrdersPage/>
+    },
+    {
+        key:7,
+        label: "events",
+        component: <EventsPage/>
+    },
 ]
+
+
