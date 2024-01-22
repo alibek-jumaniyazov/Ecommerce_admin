@@ -40,7 +40,7 @@ export const routes = [
     },
     {
         id: 7,
-        path: "/events",
+        path: "/banners",
         component: <EventsPage />
     },
 ]

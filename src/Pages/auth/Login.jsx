@@ -20,8 +20,8 @@ export default function Login() {
                 setUserData({
                     isAuth: true,
                     tokens: {
-                        access: '',
-                        refresh: '',
+                        access: response.data.accessToken,
+                        refresh:  response.data.refreshToken,
                     },
                 })
             }
