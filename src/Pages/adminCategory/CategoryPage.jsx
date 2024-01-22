@@ -103,12 +103,13 @@ export default function CategoryPage() {
 
   return (
     <div className='CategoryPage'>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <div className="categoryPage__modal">
         <h1>CategoryPage</h1>
-        <Toaster
-          position="top-center"
-          reverseOrder={false}
-        />
+
       </div>
       <div className="tables">
         <Table
