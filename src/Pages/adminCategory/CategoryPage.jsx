@@ -2,7 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { API_MODE, domain, urls } from '../../routes/url';
 import { Button, Modal, Space, Table, Typography } from 'antd';
-import { LocalizedModal } from '../../Components/category/deleteModal';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import useDeleteModal from '../../Components/CategoryPage/useDeleteModal';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function CategoryPage() {
 
@@ -10,7 +12,6 @@ export default function CategoryPage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [editedItem, setEditedItem] = useState(null)
   const [loading, setLoading] = useState(false)
-  // const deleteModal = useDeleteModal();
 
 
   const getCategory = async () => {
@@ -22,17 +23,11 @@ export default function CategoryPage() {
         }
       });
       setCategories(response.data.categories);
+      console.log(response.data.categories);
       setLoading(false)
 
     } catch (err) {
-      if (err.response) {
-        console.log("Serverdan kelgan xato:", err.response.data);
-        console.log("HTTP status kodi:", err.response.status);
-      } else if (err.request) {
-        console.log("So'rovni amalga oshirishda xatolik yuz berdi:", err.request);
-      } else {
-        console.log("Xato yuz berdi:", err.message);
-      }
+
     }
   }
 
@@ -40,16 +35,33 @@ export default function CategoryPage() {
     getCategory();
   }, []);
 
-  const [modal, contextHolder] = Modal.useModal();
-  const confirm = () => {
-    modal.confirm({
-      title: 'Haqiqatdan ham ochirmoqchimisiz',
-      icon: <ExclamationCircleOutlined />,
-      content: 'Bla bla ...',
-      okText: 'Ha',
-      cancelText: "Yo'q",
-    });
-  };
+
+  const deleteCategory = async (id) => {
+    setLoading(true)
+    try {
+      const response = await axios.delete(`${domain}${API_MODE}${urls.categories.delete(id)}`, {
+        headers: {
+          Authorization: `Bearer ${urls.token}`
+        }
+      });
+      toast.success('Category Muvofaqiyoatli ochirildi!')
+      console.log(response.data);
+      setLoading(false)
+    }
+    catch (err) {
+      console.log(err);
+      toast.error("Category o'chirilmadi")
+    }
+  }
+  // const [modal, contextHolder] = Modal.useModal();
+  // modal.confirm({
+  //   title: 'Dqqat',
+  //   icon: <ExclamationCircleOutlined />,
+  //   content: 'Haqiqatdan ham ochirmoqchimisiz',
+  //   okText: 'Ha',
+  //   cancelText: "Yo'q",
+  // });
+
 
   const columns = [
     {
@@ -77,13 +89,11 @@ export default function CategoryPage() {
             icon={<i className="fa-solid fa-pen"></i>}
           />
 
-          <LocalizedModal />
           <Button
             icon={<i className="fa-solid fa-trash"></i>}
-            onClick={confirm}>
+            onClick={() => deleteCategory(item.id)}>
           </Button>
-          {contextHolder}
-
+          {/* {contextHolder} */}
         </Space>
       ),
     },
@@ -95,7 +105,10 @@ export default function CategoryPage() {
     <div className='CategoryPage'>
       <div className="categoryPage__modal">
         <h1>CategoryPage</h1>
-
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
       </div>
       <Table
         style={{ width: "100%" }}
