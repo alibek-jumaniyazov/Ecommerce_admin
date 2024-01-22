@@ -4,13 +4,13 @@ import OrdersPage from "../Pages/adminCategory/ordersPage";
 import UsersPage from "../Pages/adminCategory/UsersPage";
 import EventsPage from "../Pages/adminCategory/EventsPage";
 import BrandPage from "../Pages/adminCategory/BrandPage";
-import Home from "../Pages/Home";
+import Home from "../Pages/adminCategory/Home";
 
 
 export const routes = [
     {
         id: 1,
-        path: "/home",
+        path: "/",
         component: <Home />
     },
     {

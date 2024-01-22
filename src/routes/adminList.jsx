@@ -29,7 +29,7 @@ export const adminList = [
   {
     key: 6,
     icon: <i className="fa-solid fa-table"></i>,
-    label: <Link to='/users'>Banners</Link>,
+    label: <Link to='/banners'>Banners</Link>,
   },
 
 ]

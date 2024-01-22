@@ -1,5 +1,5 @@
 import React from 'react'
-import Category from '../Components/category/Category'
+import Category from '../Components/AdminCategory'
 
 export default function Dashboard() {
 

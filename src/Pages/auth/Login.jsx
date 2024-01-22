@@ -21,13 +21,15 @@ export default function Login() {
                     isAuth: true,
                     tokens: {
                         access: response.data.accessToken,
-                        refresh:  response.data.refreshToken,
+                        refresh: response.data.refreshToken,
                     },
                 })
             }
             navigate('/')
             console.log(response.data);
             console.log(event);
+            localStorage.setItem("userToken", JSON.stringify( `Bearer ${response.data.accessToken}`));
+
         }
         catch (err) {
             console.error(err);

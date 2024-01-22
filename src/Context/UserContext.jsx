@@ -1,11 +1,9 @@
-import { createContext, useEffect, useState } from "react";
-import { getCategory } from "./api";
+import { createContext, useState } from "react";
 
 export const UserContext = createContext()
 
 
 const UserProvider = ({ children }) => {
-
 
     const initialState = localStorage.getItem("user")
         ? JSON.parse(localStorage.getItem("user"))
@@ -18,22 +16,22 @@ const UserProvider = ({ children }) => {
         };
     const [user, setUser] = useState(initialState);
 
-
-    useEffect(() => {
-        getCategory()
-    },[])
-
-
-    // function setData(user) { 
-      
-    // }
-
-    function setUserData(user) {
-        localStorage.setItem("user", JSON.stringify(user));
+    function setData(user) {
         setUser(user);
-        console.log(user);
+        localStorage.setItem("user", JSON.stringify(user));
     }
 
+    function setTokens(access, refresh) {
+        setData({ ...user, tokens: { access, refresh } });
+    }
+
+    function setIsAuth(auth) {
+        setData({ ...user, isAuth: auth });
+    }
+
+    function setUserData(user) {
+        setData(user)
+    }
 
     const values = {
         user, setUserData

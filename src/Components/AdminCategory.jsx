@@ -8,8 +8,8 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
 import { Route, Routes } from 'react-router-dom';
-import { routes } from '../../routes/router';
-import { adminList } from '../../routes/adminList';
+import { routes } from '../routes/router';
+import { adminList } from '../routes/adminList';
 const { Header, Sider, Content } = Layout;
 
 const Category = () => {
