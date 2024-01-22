@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { getCategory } from "./api";
 
 export const UserContext = createContext()
 
@@ -16,6 +17,12 @@ const UserProvider = ({ children }) => {
             },
         };
     const [user, setUser] = useState(initialState);
+
+
+    useEffect(() => {
+        getCategory()
+    },[])
+
 
     // function setData(user) { 
       

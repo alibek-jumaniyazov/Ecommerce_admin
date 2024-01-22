@@ -3,19 +3,19 @@ import axios from "axios";
 const url = "https://ecommerce.main-gate.appx.uz/dev/adminka"
 
 const userToken = localStorage.getItem("user")
+console.log(userToken);
 
-const getCategory = async  () =>{
+export const getCategory = async  () =>{
     try{
       const response =  axios.get(`${url}/category/list` ,{
         headers:{
             Barear:userToken
         }
       })
-      console.log((await response).data);
+      console.log(response);
     }
     catch(err){
         console.log(err);
     }
 }
 
-getCategory()
