@@ -110,13 +110,15 @@ export default function CategoryPage() {
           reverseOrder={false}
         />
       </div>
-      <Table
-        style={{ width: "100%" }}
-        dataSource={categories}
-        columns={columns}
-        loading={loading}
-        rowKey={"id"}
-      />
+      <div className="tables">
+        <Table
+          style={{ width: "100%" }}
+          dataSource={categories}
+          columns={columns}
+          loading={loading}
+          rowKey={"id"}
+        />
+      </div>
 
     </div>
   )
