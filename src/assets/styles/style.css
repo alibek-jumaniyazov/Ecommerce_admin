@@ -55,3 +55,10 @@ body {
     height: 700px;
     overflow-y: scroll;
 }
+
+.categoryPage__modal{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

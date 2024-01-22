@@ -5,6 +5,7 @@ import { Button, Modal, Space, Table, Typography } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import useDeleteModal from '../../Components/CategoryPage/useDeleteModal';
 import toast, { Toaster } from 'react-hot-toast';
+import OpenModal from '../../Components/openModal';
 
 export default function CategoryPage() {
 
@@ -109,7 +110,7 @@ export default function CategoryPage() {
       />
       <div className="categoryPage__modal">
         <h1>CategoryPage</h1>
-
+        <OpenModal />
       </div>
       <div className="tables">
         <Table
