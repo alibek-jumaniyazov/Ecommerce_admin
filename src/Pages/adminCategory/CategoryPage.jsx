@@ -8,10 +8,11 @@ import toast, { Toaster } from 'react-hot-toast';
 import OpenModal from '../../Components/openModal';
 
 export default function CategoryPage() {
-
-  const [categories, setCategories] = useState([]);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [editedItem, setEditedItem] = useState(null)
+  const [categories, setCategories] = useState([]);
+  const [createCategory, setCreateCategory] = useState([]);
+  const [edit, setEdit] = useState(null)
+  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false)
 
 
@@ -28,7 +29,7 @@ export default function CategoryPage() {
       setLoading(false)
 
     } catch (err) {
-
+      console.log(err);
     }
   }
 
@@ -54,6 +55,66 @@ export default function CategoryPage() {
       toast.error("Category o'chirilmadi")
     }
   }
+
+
+  const postCategory = async (e) => {
+    setLoading(true)
+    const body = {
+      name_uz: e.name_uz,
+      name_ru: e.name_ru,
+      slug: e.name_uz.toLowerCase(),
+      catImage: "",
+      parent_id: e.parent_id
+    }
+
+    try {
+      const response = await axios.post(`${domain}${API_MODE}${urls.categories.post}`, body, {
+        headers: {
+          Authorization: `Bearer ${urls.token}`
+        }
+      });
+      setCreateCategory(response.data);
+      console.log(response.data);
+      toast.success("Category Qo'shildi")
+      setLoading(false)
+      setOpen(false)
+
+    } catch (err) {
+      console.log(err);
+      toast.error("Category Qo'shilmadi")
+    }
+  }
+
+
+  const putCategory = async (item) => {
+    console.log(item.id);
+    setLoading(true)
+    const body = {
+      name_uz: 'e.name_uz',
+      name_ru: 'e.name_ru',
+      slug: 'e.name_uz'.toLowerCase(),
+      catImage: "",
+      parent_id: " e.parent_id"
+    }
+
+    try {
+      const response = await axios.put(`${domain}${API_MODE}${urls.categories.put(item.id)}`, body, {
+        headers: {
+          Authorization: `Bearer ${urls.token}`
+        }
+      });
+      setCreateCategory(response.data);
+      console.log(response.data);
+      toast.success("Category O'zgartirildi")
+      setLoading(false)
+      setOpen(false)
+      setDrawerOpen(false)
+    } catch (err) {
+      console.log(err);
+      toast.error("Category O'zgartirilmadi")
+    }
+  }
+
   // const [modal, contextHolder] = Modal.useModal();
   // modal.confirm({
   //   title: 'Dqqat',
@@ -63,6 +124,11 @@ export default function CategoryPage() {
   //   cancelText: "Yo'q",
   // });
 
+  function funcEdit(item) {
+    console.log(item)
+    setEdit(item)
+    setDrawerOpen(true)
+  }
 
   const columns = [
     {
@@ -88,6 +154,7 @@ export default function CategoryPage() {
         <Space>
           <Button
             icon={<i className="fa-solid fa-pen"></i>}
+            onClick={funcEdit(item)}
           />
 
           <Button
@@ -110,7 +177,7 @@ export default function CategoryPage() {
       />
       <div className="categoryPage__modal">
         <h1>CategoryPage</h1>
-        <OpenModal />
+        <OpenModal postCategory={postCategory} categories={categories} open={open} setOpen={setOpen} setEdit={setEdit} edit={edit} setDrawerOpen={setDrawerOpen}/>
       </div>
       <div className="tables">
         <Table

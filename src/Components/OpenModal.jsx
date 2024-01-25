@@ -1,107 +1,68 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Col, Drawer, Form, Input, Row, Select, Space } from 'antd';
+import { Button, Col, Drawer, Form, Input, Row, Select } from 'antd';
 const { Option } = Select;
 
-export default function OpenModal() {
+export default function OpenModal({ postCategory, categories, open, setOpen, setEdit, setDrawerOpen }) {
 
-    const [open, setOpen] = useState(false);
-    const showDrawer = () => {
-        setOpen(true);
-    };
-    const onClose = () => {
-        setOpen(false);
-    };
+  const showDrawer = () => {
+    setOpen(true);
+  };
 
-    return (
-        <div className='openModal'>
-            <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />}>
-                Add Category
-            </Button>
-            <Drawer
-                title="Create a new category"
-                width={720}
-                onClose={onClose}
-                open={open}
-                styles={{
-                    body: {
-                        paddingBottom: 80,
-                    },
-                }}
+  const onClose = () => {
+    setOpen(false);
+    setDrawerOpen(false);
+  };
 
-            >
-                <Form layout="vertical" hideRequiredMark>
-                    <Row gutter={16}>
-                        <Col span={12}>
-                            <Form.Item
-                                name="name_uz"
-                                label="Name uz"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please enter name uz',
-                                    },
-                                ]}
-                            >
-                                <Input placeholder="Please enter name uz" />
-                            </Form.Item>
-                        </Col>
-                        <Col span={12}>
-                            <Form.Item
-                                name="name_ru"
-                                label="Name ru"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please enter name ru',
-                                    },
-                                ]}
-                            >
-                                <Input placeholder="Please enter name ru" />
-                            </Form.Item>
-                        </Col>
-                    </Row>
-                    <Row gutter={16}>
-                        <Col span={12}>
-                            <Form.Item
-                                name="catImage"
-                                label="Image url"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please enter Image url',
-                                    },
-                                ]}
-                            >
-                                <Input placeholder="Please enter Image url" />
-                            </Form.Item>
-                        </Col>
-                        <Col span={12}>
-                            <Form.Item
-                                name="slug"
-                                label="Category select"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please select category',
-                                    },
-                                ]}
-                            >
-                                <Select placeholder="Please select an owner">
-                                    <Option value="xiao">Xiaoxiao Fu</Option>
-                                    <Option value="mao">Maomao Zhou</Option>
-                                </Select>
-                            </Form.Item>
-                        </Col>
-                    </Row>
-                </Form>
-                <Space>
-                    <Button onClick={onClose}>Cancel</Button>
-                    <Button onClick={onClose} type="primary">
-                        Create
-                    </Button>
-                </Space>
-            </Drawer>
-        </div>
-    )
+  return (
+    <div className='openModal'>
+      <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />}>
+        Add Category
+      </Button>
+      <Drawer
+        title="Create a new category"
+        width={720}
+        onClose={onClose}
+        visible={open}
+        bodyStyle={{ paddingBottom: 80 }}
+      >
+        <Form layout="vertical" onFinish={postCategory}>
+          <Row gutter={[12, 0]}>
+            <Col lg={12}>
+              <Form.Item label="Name uz" name="name_uz" rules={[{ required: true, message: 'Please enter Name uz' }]}>
+                <Input placeholder="Type name uz" />
+              </Form.Item>
+            </Col>
+            <Col lg={12}>
+              <Form.Item label="Name ru" name="name_ru" rules={[{ required: true, message: 'Please enter Name ru' }]}>
+                <Input placeholder="Type name ru" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={[12, 0]}>
+            <Col lg={12}>
+              <Form.Item label="Image url" name="catImage" rules={[{ type: 'url', message: 'Please enter a valid URL' }]}>
+                <Input placeholder="Paste image url" />
+              </Form.Item>
+            </Col>
+            <Col lg={12}>
+              <Form.Item label="Parent category" name="parent_id">
+                <Select>
+                  <Option value="0">Own</Option>
+                  {categories?.map((item) => (
+                    <Option value={item.id} key={item.id}>
+                      {item.name_uz}
+                    </Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+          </Row>
+          <Button type="primary" htmlType="submit">
+            Add category
+          </Button>
+        </Form>
+      </Drawer>
+    </div>
+  );
 }
