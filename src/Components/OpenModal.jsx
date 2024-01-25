@@ -3,7 +3,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, Col, Drawer, Form, Input, Row, Select } from 'antd';
 const { Option } = Select;
 
-export default function OpenModal({ postCategory, categories, open, setOpen, setEdit, setDrawerOpen }) {
+export default function OpenModal({ postCategory, categories, open, setOpen, setEdit ,putCategory }) {
 
   const showDrawer = () => {
     setOpen(true);
@@ -11,8 +11,12 @@ export default function OpenModal({ postCategory, categories, open, setOpen, set
 
   const onClose = () => {
     setOpen(false);
-    setDrawerOpen(false);
   };
+
+  function handleValue(e){
+    postCategory(e)
+    // putCategory(e)
+  }
 
   return (
     <div className='openModal'>
@@ -26,7 +30,7 @@ export default function OpenModal({ postCategory, categories, open, setOpen, set
         visible={open}
         bodyStyle={{ paddingBottom: 80 }}
       >
-        <Form layout="vertical" onFinish={postCategory}>
+        <Form layout="vertical" onFinish={handleValue}>
           <Row gutter={[12, 0]}>
             <Col lg={12}>
               <Form.Item label="Name uz" name="name_uz" rules={[{ required: true, message: 'Please enter Name uz' }]}>

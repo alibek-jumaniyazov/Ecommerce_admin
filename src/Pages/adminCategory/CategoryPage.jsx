@@ -1,16 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { API_MODE, domain, urls } from '../../routes/url';
-import { Button, Modal, Space, Table, Typography } from 'antd';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
-import useDeleteModal from '../../Components/CategoryPage/useDeleteModal';
+import { Button, Space, Table, Typography } from 'antd';
 import toast, { Toaster } from 'react-hot-toast';
 import OpenModal from '../../Components/openModal';
 
 export default function CategoryPage() {
-  const [drawerOpen, setDrawerOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [createCategory, setCreateCategory] = useState([]);
   const [edit, setEdit] = useState(null)
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false)
@@ -32,11 +28,6 @@ export default function CategoryPage() {
       console.log(err);
     }
   }
-
-  useEffect(() => {
-    getCategory();
-  }, []);
-
 
   const deleteCategory = async (id) => {
     setLoading(true)
@@ -73,7 +64,6 @@ export default function CategoryPage() {
           Authorization: `Bearer ${urls.token}`
         }
       });
-      setCreateCategory(response.data);
       console.log(response.data);
       toast.success("Category Qo'shildi")
       setLoading(false)
@@ -85,35 +75,37 @@ export default function CategoryPage() {
     }
   }
 
+  useEffect(() => {
+    getCategory();
+  }, []);
+  
+  // const putCategory = async (e) => {
+  //   console.log(item.id);
+  //   setLoading(true)
+  //   const body = {
+  //     name_uz: 'e.name_uz',
+  //     name_ru: 'e.name_ru',
+  //     slug: 'e.name_uz'.toLowerCase(),
+  //     catImage: "",
+  //     parent_id: " e.parent_id"
+  //   }
 
-  const putCategory = async (item) => {
-    console.log(item.id);
-    setLoading(true)
-    const body = {
-      name_uz: 'e.name_uz',
-      name_ru: 'e.name_ru',
-      slug: 'e.name_uz'.toLowerCase(),
-      catImage: "",
-      parent_id: " e.parent_id"
-    }
-
-    try {
-      const response = await axios.put(`${domain}${API_MODE}${urls.categories.put(item.id)}`, body, {
-        headers: {
-          Authorization: `Bearer ${urls.token}`
-        }
-      });
-      setCreateCategory(response.data);
-      console.log(response.data);
-      toast.success("Category O'zgartirildi")
-      setLoading(false)
-      setOpen(false)
-      setDrawerOpen(false)
-    } catch (err) {
-      console.log(err);
-      toast.error("Category O'zgartirilmadi")
-    }
-  }
+  //   try {
+  //     const response = await axios.put(`${domain}${API_MODE}${urls.categories.put(item.id)}`, body, {
+  //       headers: {
+  //         Authorization: `Bearer ${urls.token}`
+  //       }
+  //     });
+  //     setCreateCategory(response.data);
+  //     console.log(response.data);
+  //     toast.success("Category O'zgartirildi")
+  //     setLoading(false)
+  //     setOpen(false)
+  //   } catch (err) {
+  //     console.log(err);
+  //     toast.error("Category O'zgartirilmadi")
+  //   }
+  // }
 
   // const [modal, contextHolder] = Modal.useModal();
   // modal.confirm({
@@ -124,12 +116,7 @@ export default function CategoryPage() {
   //   cancelText: "Yo'q",
   // });
 
-  function funcEdit(item) {
-    console.log(item)
-    setEdit(item)
-    setDrawerOpen(true)
-  }
-
+ 
   const columns = [
     {
       title: "Name",
@@ -154,14 +141,13 @@ export default function CategoryPage() {
         <Space>
           <Button
             icon={<i className="fa-solid fa-pen"></i>}
-            onClick={funcEdit(item)}
+            // onClick={}
           />
 
           <Button
             icon={<i className="fa-solid fa-trash"></i>}
             onClick={() => deleteCategory(item.id)}>
           </Button>
-          {/* {contextHolder} */}
         </Space>
       ),
     },
@@ -177,7 +163,7 @@ export default function CategoryPage() {
       />
       <div className="categoryPage__modal">
         <h1>CategoryPage</h1>
-        <OpenModal postCategory={postCategory} categories={categories} open={open} setOpen={setOpen} setEdit={setEdit} edit={edit} setDrawerOpen={setDrawerOpen}/>
+        <OpenModal postCategory={postCategory} categories={categories} open={open} setOpen={setOpen} setEdit={setEdit} edit={edit}  />
       </div>
       <div className="tables">
         <Table
