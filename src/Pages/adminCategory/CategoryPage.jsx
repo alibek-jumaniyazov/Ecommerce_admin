@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { API_MODE, domain, urls } from '../../routes/url';
 import { Button, Space, Table, Typography } from 'antd';
 import toast, { Toaster } from 'react-hot-toast';
-import OpenModal from '../../Components/openModal';
+import OpenModal from '../../Components/CategoryPage/OpenModal';
 
 export default function CategoryPage() {
   const [categories, setCategories] = useState([]);

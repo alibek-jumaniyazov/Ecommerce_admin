@@ -22,6 +22,11 @@ export const urls = {
         post: '/brand/add',
         delete: (id) => `/brand/delete/${id}`,
         put: (id) => `/brand/update/${id}`,
-    }
-
+    },
+    banner: {
+        getList: '/events/list',
+        post: '/events/add',
+        delete: (id) => `/events/delete/${id}`,
+        put: (id) => `/events/update/${id}`,
+    },
 }

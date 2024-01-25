@@ -3,7 +3,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, Col, Drawer, Form, Input, Row, Select } from 'antd';
 const { Option } = Select;
 
-export default function OpenModal({ postCategory, categories, open, setOpen, setEdit ,putCategory }) {
+export default function OpenModal({ postCategory, categories, open, setOpen, setEdit, putCategory }) {
 
   const showDrawer = () => {
     setOpen(true);
@@ -13,7 +13,7 @@ export default function OpenModal({ postCategory, categories, open, setOpen, set
     setOpen(false);
   };
 
-  function handleValue(e){
+  function handleValue(e) {
     postCategory(e)
     // putCategory(e)
   }
@@ -27,8 +27,8 @@ export default function OpenModal({ postCategory, categories, open, setOpen, set
         title="Create a new category"
         width={720}
         onClose={onClose}
-        visible={open}
-        bodyStyle={{ paddingBottom: 80 }}
+        open={open}
+        styles={{ body: { paddingBottom: 80 } }}
       >
         <Form layout="vertical" onFinish={handleValue}>
           <Row gutter={[12, 0]}>
