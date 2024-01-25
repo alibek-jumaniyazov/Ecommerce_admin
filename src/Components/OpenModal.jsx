@@ -19,7 +19,7 @@ export default function OpenModal() {
                 Add Category
             </Button>
             <Drawer
-                title="Create a new account"
+                title="Create a new category"
                 width={720}
                 onClose={onClose}
                 open={open}
@@ -98,7 +98,7 @@ export default function OpenModal() {
                 <Space>
                     <Button onClick={onClose}>Cancel</Button>
                     <Button onClick={onClose} type="primary">
-                        Submit
+                        Create
                     </Button>
                 </Space>
             </Drawer>
