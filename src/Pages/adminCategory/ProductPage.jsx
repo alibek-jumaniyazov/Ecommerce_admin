@@ -132,6 +132,11 @@ export default function ProductPage() {
           dataSource={product}
           columns={columns}
           loading={loading}
+          pagination={
+            {
+              total: 25
+            }
+          }
           rowKey={"id"}
         />
       </div>
