@@ -4,7 +4,6 @@ import { API_MODE, domain, urls } from '../../routes/url';
 import { Button, Image, Space, Table, Typography } from 'antd';
 import toast, { Toaster } from 'react-hot-toast';
 import BrandModal from '../../Components/BrandPage/BrandModal';
-import OpenModal from '../../Components/CategoryPage/OpenModal';
 
 export default function BrandPage() {
   const [brand, setBrand] = useState([]);

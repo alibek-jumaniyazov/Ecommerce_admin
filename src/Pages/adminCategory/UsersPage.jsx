@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { API_MODE, domain, urls } from '../../routes/url';
 import { Button, Image, Space, Table, Typography } from 'antd';
 import toast, { Toaster } from 'react-hot-toast';
-import BannerModal from '../../Components/BannerPage/BannerModal';
 import UserModal from '../../Components/UserPage/UserModal';
 
 export default function UsersPage() {

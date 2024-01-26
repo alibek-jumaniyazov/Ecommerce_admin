@@ -1,8 +1,8 @@
 export const domain = 'https://ecommerce.main-gate.appx.uz'
 export const API_MODE = '/dev/adminka'
 const accessToken = localStorage.getItem("user")
-? JSON.parse(localStorage.getItem("user")).tokens.access
-: null;
+    ? JSON.parse(localStorage.getItem("user")).tokens.access
+    : null;
 
 
 export const urls = {
@@ -10,7 +10,7 @@ export const urls = {
         login: '/auth/login',
         refresh: '/auth/refresh',
     },
-    token:accessToken,
+    token: accessToken,
     categories: {
         getList: '/category/list',
         post: '/category/add',
@@ -33,5 +33,10 @@ export const urls = {
         getList: '/user/list',
         post: '/user/create',
         delete: (id) => `/user/delete/${id}`,
+    },
+    product: {
+        getList: '/product/list',
+        post: '/product/add',
+        delete: (id) => `/product/${id}`,
     },
 }
