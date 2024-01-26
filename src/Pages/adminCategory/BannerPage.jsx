@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { API_MODE, domain, urls } from '../../routes/url';
 import { Button, Image, Space, Table, Typography } from 'antd';
 import toast, { Toaster } from 'react-hot-toast';
-import BrandModal from '../../Components/BrandPage/BrandModal';
+import BannerModal from '../../Components/BannerPage/BannerModal';
 
 export default function BannerPage() {
     const [banner, setBanner] = useState([]);
@@ -18,7 +18,7 @@ export default function BannerPage() {
                     Authorization: `Bearer ${urls.token}`
                 }
             });
-            setBanner(response.data);
+            setBanner(response.data.events);
             console.log(response.data);
             setLoading(false);
         } catch (err) {
@@ -28,14 +28,17 @@ export default function BannerPage() {
 
     const postBanner = async (e) => {
         const body = {
-            name_uz: e.name_uz,
+            title_uz: e.name_uz,
             name_ru: e.name_ru,
             image: e.image,
+            image: e.image,
+            image: e.image,     
+
         };
         console.log(e);
         setLoading(true);
         try {
-            const response = await axios.post(`${domain}${API_MODE}${urls.banner.post}`, body, {
+            const response = await axios.post(`${domain}${API_MODE}${urls.banner.post}`, e, {
                 headers: {
                     Authorization: `Bearer ${urls.token}`
                 }
@@ -54,7 +57,7 @@ export default function BannerPage() {
     const deleteBanner = async (id) => {
         setLoading(true);
         try {
-            const response = await axios.delete(`${domain}${API_MODE}${urls.brand.delete(id)}`, {
+            const response = await axios.delete(`${domain}${API_MODE}${urls.banner.delete(id)}`, {
                 headers: {
                     Authorization: `Bearer ${urls.token}`
                 }
@@ -65,11 +68,12 @@ export default function BannerPage() {
         } catch (err) {
             console.error(err);
             toast.error("Brand o'chirilmadi");
+            setLoading(false);
         }
     };
 
     useEffect(() => {
-        getBrand();
+        getBanner();
     }, []);
 
     const columns = [
@@ -82,7 +86,7 @@ export default function BannerPage() {
         },
         {
             title: "Name",
-            dataIndex: "name_uz",
+            dataIndex: "title_uz",
         },
         {
             title: "Status",
@@ -99,12 +103,12 @@ export default function BannerPage() {
                 <Space>
                     <Button
                         icon={<i className="fa-solid fa-pen"></i>}
-                        onClick={() => putBrand(item.id)}
+                    // onClick={() => putBrand(item.id)}
                     />
 
                     <Button
                         icon={<i className="fa-solid fa-trash"></i>}
-                        onClick={() => deleteBrand(item.id)}
+                        onClick={() => deleteBanner(item.id)}
                     />
                 </Space>
             ),
@@ -119,12 +123,12 @@ export default function BannerPage() {
             />
             <div className="categoryPage__modal">
                 <h1>BannerPage</h1>
-                <BrandModal postBrand={postBrand} brand={brand} open={open} setOpen={setOpen} />
+                <BannerModal postBanner={postBanner} banner={banner} open={open} setOpen={setOpen} />
             </div>
             <div className="tables">
                 <Table
                     style={{ width: "100%" }}
-                    dataSource={brand}
+                    dataSource={banner}
                     columns={columns}
                     loading={loading}
                     rowKey={"id"}

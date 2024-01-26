@@ -25,18 +25,13 @@ export default function BrandPage() {
     } catch (err) {
       console.error(err);
     }
-  };
+  };  
 
   const postBrand = async (e) => {
-    const body = {
-      name_uz: e.name_uz,
-      name_ru: e.name_ru,
-      image: e.image,
-    };
-      console.log(e);
+    console.log(e);
     setLoading(true);
     try {
-      const response = await axios.post(`${domain}${API_MODE}${urls.brand.post}`, body, {
+      const response = await axios.post(`${domain}${API_MODE}${urls.brand.post}`, e, {
         headers: {
           Authorization: `Bearer ${urls.token}`
         }

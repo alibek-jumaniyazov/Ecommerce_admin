@@ -78,7 +78,7 @@ export default function CategoryPage() {
   useEffect(() => {
     getCategory();
   }, []);
-  
+
   // const putCategory = async (e) => {
   //   console.log(item.id);
   //   setLoading(true)
@@ -116,7 +116,7 @@ export default function CategoryPage() {
   //   cancelText: "Yo'q",
   // });
 
- 
+
   const columns = [
     {
       title: "Name",
@@ -141,7 +141,7 @@ export default function CategoryPage() {
         <Space>
           <Button
             icon={<i className="fa-solid fa-pen"></i>}
-            // onClick={}
+          // onClick={}
           />
 
           <Button
@@ -163,7 +163,7 @@ export default function CategoryPage() {
       />
       <div className="categoryPage__modal">
         <h1>CategoryPage</h1>
-        <OpenModal postCategory={postCategory} categories={categories} open={open} setOpen={setOpen} setEdit={setEdit} edit={edit}  />
+        <OpenModal postCategory={postCategory} categories={categories} open={open} setOpen={setOpen} setEdit={setEdit} edit={edit} />
       </div>
       <div className="tables">
         <Table

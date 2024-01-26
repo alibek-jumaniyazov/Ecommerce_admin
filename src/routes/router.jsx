@@ -2,9 +2,9 @@ import CategoryPage from "../Pages/adminCategory/CategoryPage";
 import ProductPage from "../Pages/adminCategory/ProductPage";
 import OrdersPage from "../Pages/adminCategory/ordersPage";
 import UsersPage from "../Pages/adminCategory/UsersPage";
-import EventsPage from "../Pages/adminCategory/EventsPage";
 import BrandPage from "../Pages/adminCategory/BrandPage";
 import Home from "../Pages/adminCategory/Home";
+import BannerPage from "../Pages/adminCategory/BannerPage";
 
 
 export const routes = [
@@ -41,7 +41,7 @@ export const routes = [
     {
         id: 7,
         path: "/banners",
-        component: <EventsPage />
+        component: <BannerPage />
     },
 ]
 
