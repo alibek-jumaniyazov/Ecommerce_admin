@@ -42,7 +42,7 @@ body {
     align-items: center;
 }
 
-.CategoryPage {
+.Page {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -57,7 +57,7 @@ body {
     overflow-y: scroll;
 }
 
-.categoryPage__modal{
+.Page__modal {
     width: 100%;
     display: flex;
     justify-content: space-between;

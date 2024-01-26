@@ -130,12 +130,12 @@ export default function BrandPage() {
   ];
 
   return (
-    <div className='BrandPage'>
+    <div className='Page'>
       <Toaster
         position="top-center"
         reverseOrder={false}
       />
-      <div className="categoryPage__modal">
+      <div className="Page__modal">
         <h1>BrandPage</h1>
         <BrandModal postBrand={postBrand} brand={brand} open={open} setOpen={setOpen} />
       </div>

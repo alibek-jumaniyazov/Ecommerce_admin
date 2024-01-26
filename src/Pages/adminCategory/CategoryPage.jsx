@@ -156,12 +156,12 @@ export default function CategoryPage() {
 
 
   return (
-    <div className='CategoryPage'>
+    <div className='Page'>
       <Toaster
         position="top-center"
         reverseOrder={false}
       />
-      <div className="categoryPage__modal">
+      <div className="Page__modal">
         <h1>CategoryPage</h1>
         <OpenModal postCategory={postCategory} categories={categories} open={open} setOpen={setOpen} setEdit={setEdit} edit={edit} />
       </div>

@@ -30,10 +30,7 @@ export default function BannerPage() {
         const body = {
             title_uz: e.name_uz,
             name_ru: e.name_ru,
-            image: e.image,
-            image: e.image,
-            image: e.image,     
-
+            image: e.image,   
         };
         console.log(e);
         setLoading(true);
@@ -116,12 +113,12 @@ export default function BannerPage() {
     ];
 
     return (
-        <div className='BrandPage'>
+        <div className='Page'>
             <Toaster
                 position="top-center"
                 reverseOrder={false}
             />
-            <div className="categoryPage__modal">
+            <div className="Page__modal">
                 <h1>BannerPage</h1>
                 <BannerModal postBanner={postBanner} banner={banner} open={open} setOpen={setOpen} />
             </div>

@@ -29,4 +29,9 @@ export const urls = {
         delete: (id) => `/events/delete/${id}`,
         put: (id) => `/events/update/${id}`,
     },
+    user: {
+        getList: '/user/list',
+        post: '/user/create',
+        delete: (id) => `/user/delete/${id}`,
+    },
 }
